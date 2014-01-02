@@ -3,9 +3,9 @@
 class Questions {
     private $quizItems =  array(
                     0 => array(
-                      "question"    =>   "What is the date?",
-                      "answer"      =>   array(  "12th", "7th", "1st" ),
-                      "correct"     =>   '12th',
+                      "question"    =>   "What is the century?",
+                      "answer"      =>   array(  "21st", "17th", "1st" ),
+                      "correct"     =>   '21st',
                       "submitText"  =>   'next'
                     ),
                     1 => array(
@@ -21,11 +21,6 @@ class Questions {
                       "submitText"  =>   "calculate total"
                     )
                   );
-
-  public function __construct()
-  {
-
-  }
 
   public function getQuestionsArray()
   {
