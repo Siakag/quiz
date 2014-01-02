@@ -5,6 +5,7 @@ $(function() {
   // populate handlebars template
   (function()
   {
+    // first question - static
     var quizItems =   [
                         {
                           question    :   "What is the date?",
@@ -13,18 +14,18 @@ $(function() {
                         }
                       ];
 
-    var dataWrapper = { quizObject : quizItems };
-
-
-    console.log(dataWrapper);
-
+    // handlebars functions
     var templateSource = $('#content-template').html();
     var compiledTemplate = Handlebars.compile(templateSource);
+    var dataWrapper = { quizObject : quizItems };
     $('#content').append( compiledTemplate(dataWrapper) );
 
   }());
 
-  $('.answerChoices').on('click', function()
+
+
+  // enable 'next' button even on dynamically added content
+  $(document).on('click', '.answerChoices', function()
   {
     if( $('.answerChoices:checked').size() > 0 && $('#hInput').val() == '' )
     {
@@ -42,20 +43,33 @@ $(function() {
     var count = 0;
     var questionsLeft = true;
     var formEls = $('#answers').serialize();
-    function sendResults(data)
-    {
 
-    }
-    function setQuestionsLeft(tof)
+    function sendResults(d)
     {
-      questionsLeft = tof;
+      // append to data object
+      d.count = count;
+      d.question = count + 1;
+
+      // send AJAX request
+      $.ajax({
+        url : d.url,
+        type : d.sendType,
+        data : d,
+        dataType : 'html'
+      }).done(function(msg)
+      {
+          $('#content').html(msg);
+      }).fail(function()
+      {
+          alert('Sorry the quiz could not be loaded. Please refresh your browser.');
+      }).always();
     }
 
+    // returned object once instance of renderQuestion is made
     return {
       getNextQuestion : function(data)
       {
-        sendResults(data, count);
-        setQuestionsLeft(data);
+        sendResults(data);
         count++;
       }
     }
@@ -63,23 +77,21 @@ $(function() {
 
 
 
-  // submit on click handler
+  // submit on click handler (considering dynamically added submit buttons)
   var getResults = renderQuestion();
-  $('#submit').on('click', function()
+  $(document).on('click', '#submit', function(event)
   {
-    var answer = {
-      a : $('.answerChoices:checked').val()
-    }
-    var data  = {
-      d : JSON.stringify(answer)
-    }
+    event.preventDefault();
 
+    // create data object
+    var data = {
+      url : $('#answers').attr('action'),
+      sendType : $('#answers').attr('method'),
+      ans : $('.answerChoices:checked').val()
+    }
     getResults.getNextQuestion(data);
-    // console.log( JSON.stringify(data) );
   })
 
 
 
-  //
-  console.log( $('#answers').serialize() );
 })
