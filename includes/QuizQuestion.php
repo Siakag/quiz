@@ -2,7 +2,7 @@
 
 class QuizQuestion {
 
-  private $question = '', $correctAnswer = '', $answers = '', $quizItemCount = '', $answerInputString = '', $submitValue = '', $qItem = '';
+  private $question = '', $answers = '', $quizItemCount = '';
 
   public function __construct()
   {
@@ -15,25 +15,16 @@ class QuizQuestion {
   {
     $this->quizItemCount = $count;
     $this->question = $this->qItemArray[$this->quizItemCount]['question'];
-    $this->correctAnswer = $this->qItemArray[$this->quizItemCount]['correct'];
-    $this->answers = $this->qItemArray[$this->quizItemCount]['answer'];
-    $this->submitValue = $this->qItemArray[$this->quizItemCount]['submitText'];
+    $this->answers = implode(',', $this->qItemArray[$this->quizItemCount]['answer']);
+    $this->itemsLeft = ( $this->quizItemCount < count($this->qItemArray) - 1 ) ? true : false;
 
-    for($i=0; $i < count($this->answers); $i++)
-    {
-      $this->answerInputString .= "<input type='radio' name='answerChoices' class='answerChoices' value=" . $this->answers[$i] . ">" . $this->answers[$i] . "</input><br>";
-    }
+    // debuging
+    $this->qItemArray[$this->quizItemCount]['itemsCount'] = $this->quizItemCount;
+    $this->qItemArray[$this->quizItemCount]['totalItems'] = count($this->qItemArray)-1;
 
-    // create quiz form to be returned to index
-$quiz = <<<FORM
-  <h2>Q: $this->question </h2>
-  <form id='answers' action='includes/questionHandler.php' method='post'>
-    <input id='hInput' class='hide' type='text' value='' />
-      $this->answerInputString
-    <input id='submit' type='submit' value="$this->submitValue" disabled='disabled'>
-  </form>
-FORM;
+    // return data
+    $this->qItemArray[$this->quizItemCount]['itemsLeft'] = $this->itemsLeft;
+    return $this->qItemArray[$this->quizItemCount];
 
-    return $quiz;
   }
 }

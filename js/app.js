@@ -58,7 +58,28 @@ $(function() {
         dataType : 'html'
       }).done(function(msg)
       {
-          $('#content').html(msg);
+        var currentQuestion = JSON.parse(msg);
+        questionsLeft = currentQuestion.itemsLeft;
+        var itemsCount = currentQuestion.itemsCount;
+        var totalItems = currentQuestion.totalItems;
+
+          $('#content h2').text( 'Q: ' + currentQuestion.question );
+          $('#content input[type="radio"]').each(function(index, item)
+          {
+            console.log(currentQuestion.answer[index]);
+            $(item).attr('value', currentQuestion.answer[index] );
+            $(item).attr('checked', false );
+            $(item).next().text( currentQuestion.answer[index] );
+          })
+
+          console.log(questionsLeft);
+          console.log(itemsCount);
+          console.log(totalItems);
+
+          if( !questionsLeft )
+          {
+            $('#submit').val('submit & calculate total');
+          }
       }).fail(function()
       {
           alert('Sorry the quiz could not be loaded. Please refresh your browser.');

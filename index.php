@@ -40,10 +40,9 @@
             <form id='answers' action='includes/questionHandler.php' method='post'>
               <input id='hInput' class='hide' type='text' value='' />
               {{#each answer}}
-                <input type='radio' name='answerChoices' class='answerChoices' value={{this}}>{{this}}</input><br>
+                <input type='radio' name='answerChoices' class='answerChoices' value={{this}}> <span>{{this}}</span><br>
               {{/each}}
-              <input id='submit' type='submit' value={{submitValue}} disabled='disabled'>
-            </form>
+              <input id='submit' type='submit' value={{submitValue}} disabled='disabled'>            </form>
           {{/if}}
 
         {{/each}}
