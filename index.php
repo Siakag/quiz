@@ -33,13 +33,16 @@
         {{#each quizObject}}
 
           {{#if this.question}}
-            <h2>q: {{question}}</h2>
+            <h2>Q: {{question}}</h2>
           {{/if}}
 
           {{#if this.answer}}
-            {{#each answer}}
-              <input type='radio' value={{this}}>{{this}}</input><br>
-            {{/each}}
+            <form id='answers' action='includes/questionHandler.php' method='post'>
+              {{#each answer}}
+                <input type='radio' name='answerChoices' value={{this}}>{{this}}</input><br>
+              {{/each}}
+              <input id'submit' type='submit' value={{submitValue}} disabled='true'>
+            </form>
           {{/if}}
 
         {{/each}}
