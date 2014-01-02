@@ -38,6 +38,7 @@
 
           {{#if this.answer}}
             <form id='answers' action='includes/questionHandler.php' method='post'>
+              <input id='hInput' class='hide' type='text' value='' />
               {{#each answer}}
                 <input type='radio' name='answerChoices' class='answerChoices' value={{this}}>{{this}}</input><br>
               {{/each}}
