@@ -39,9 +39,9 @@
           {{#if this.answer}}
             <form id='answers' action='includes/questionHandler.php' method='post'>
               {{#each answer}}
-                <input type='radio' name='answerChoices' value={{this}}>{{this}}</input><br>
+                <input type='radio' name='answerChoices' class='answerChoices' value={{this}}>{{this}}</input><br>
               {{/each}}
-              <input id'submit' type='submit' value={{submitValue}} disabled='true'>
+              <input id='submit' type='submit' value={{submitValue}} disabled='disabled'>
             </form>
           {{/if}}
 

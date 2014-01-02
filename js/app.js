@@ -22,12 +22,14 @@ $(function() {
 
   }());
 
-  $('#answers input[type="radio"]').on('click', function()
+  $('.answerChoices').on('click', function()
   {
-    $(this).attr('checked', 'checked');
-    if( $(this).attr('checked') === 'checked' )
+    if( $('.answerChoices:checked').size() > 0 )
     {
-      $('#submit').attr('disabled') = 'false';
+      $('#submit').attr('disabled', false);
+      return;
     }
+    $('#submit').attr('disabled', true);
   })
+
 })
