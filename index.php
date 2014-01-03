@@ -10,8 +10,10 @@
 <!-- <![endif] -->
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript Quiz</title>
+    <meta name="keywords" content="javascript quiz, javascript tutorial, test javascript, online js quiz, online javascript dynamic test">
+    <meta name="description" content="Dynamic JavaScript quiz / tutorial">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="css/favicon.ico" type="image/x-icon">
     <link rel="icon" href="css/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css" >
@@ -19,10 +21,10 @@
   <body>
     <h1>JS</h1>
 
-  <!-- question data pulled in by ajax -->
+  <!-- question data pulled in with Handlebars & ajax -->
     <div id="content"> </div>
 
-  <!-- scripts -->
+  <!-- scripts (added to bottom to prevent page blocking elements) -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="js/handlebars-v1.2.0.js"></script>
     <script src="js/app.js"></script>
