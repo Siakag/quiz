@@ -43,6 +43,7 @@ $(function() {
     var count = 0;
     var questionsLeft = true;
     var formEls = $('#answers').serialize();
+    var correctAnswers = 0;
 
     function sendResults(d)
     {
@@ -59,9 +60,9 @@ $(function() {
       }).done(function(msg)
       {
         var currentQuestion = JSON.parse(msg);
+        var corrctOrNot = currentQuestion.correct;
+        var totalPossible = currentQuestion.totalPossible;
         questionsLeft = currentQuestion.itemsLeft;
-        var itemsCount = currentQuestion.itemsCount;
-        var totalItems = currentQuestion.totalItems;
 
           $('#content h2').text( 'Q: ' + currentQuestion.question );
           $('#content input[type="radio"]').each(function(index, item)
@@ -73,18 +74,21 @@ $(function() {
           })
 
           console.log(questionsLeft);
-          console.log(itemsCount);
-          console.log(totalItems);
+          console.log(correctAnswers += corrctOrNot);
 
           if( !questionsLeft )
           {
             $('#submit').val('submit & calculate total');
+            var percentRight = (correctAnswers/totalPossible);
+            $('#content').text('You got a total of ' + correctAnswers + ' answers right out of ' + totalPossible + ' questions. A ' + percentRight*100 + '% total.');
           }
       }).fail(function()
       {
           alert('Sorry the quiz could not be loaded. Please refresh your browser.');
       }).always();
     }
+
+
 
     // returned object once instance of renderQuestion is made
     return {
