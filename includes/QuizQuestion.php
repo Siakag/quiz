@@ -42,7 +42,7 @@ class QuizQuestion {
     $this->qItemArray[$this->quizItemCount]['correct'] = self::$correct;
     $this->qItemArray[$this->quizItemCount]['totalPossible'] = TOTAL_POSSIBLE_POINTS + 1;
     $this->qItemArray[$this->quizItemCount]['quizItemCount'] = $count;
-    $this->qItemArray[$this->quizItemCount]['itemsLeft'] = (int)$this->itemsLeft;
+    $this->qItemArray[$this->quizItemCount]['itemsLeft'] = $this->itemsLeft;
     return $this->qItemArray[$this->quizItemCount];
   }
 

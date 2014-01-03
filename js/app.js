@@ -66,62 +66,70 @@ $(function() {
         type : d.sendType,
         data : d,
         dataType : 'html'
-      }).done(function(msg)
+      })
+      .done(function(msg)
       {
-
-        var currentQuestion = JSON.parse(msg);
 
         if(getTotal == true)
         {
-          var c = currentQuestion.correct;
-          var t = currentQuestion.total;
-          var p = currentQuestion.percentage;
+          // create array from returned ajax data
+          var currentQuestion = msg.split(',');;
+
+          var c = currentQuestion[0];
+          var t = currentQuestion[1];
+          var p = currentQuestion[2];
           var moddedmsg = 'You answered ' + c + ' questions right out of a possible ' + t + '. You have a score of ' + p + '%';
           $('#content').text(moddedmsg);
           return;
         }
-
-        count++;
-        questionsLeftInt = totalQuestions - count;
-        // return the results after last question is answered
-        if( questionsLeftInt == 1 )
+        else
         {
-          $('#submit').click(function()
+          var currentQuestion = JSON.parse(msg);
+
+          count++;
+          questionsLeftInt = totalQuestions - count;
+          // return the results after last question is answered
+          if( questionsLeftInt == 1 )
           {
-            getTotal = true;
-            $(this).parent().attr('action', 'includes/getTotal.php');
+            $('#submit').click(function()
+            {
+              getTotal = true;
+              $(this).parent().attr('action', 'includes/getTotal.php');
+            })
+          }
+
+          correctAnswers += currentQuestion.correct;
+          totalQuestions = currentQuestion.totalPossible;
+          anyQuestionsLeft = currentQuestion.itemsLeft;
+
+          // console.log( 'count: ' + count );
+          // console.log( 'correctAnswers: ' + correctAnswers );
+          // console.log( 'getTotal: ' + getTotal );
+          // console.log( 'totalQuestions: ' + totalQuestions );
+          // console.log( 'anyQuestionsLeft: ' + anyQuestionsLeft  );
+          // console.log( 'questionsLeftInt: ' + questionsLeftInt  );
+
+          $('#content h2').text( 'Q: ' + currentQuestion.question );
+          $('#content input[type="radio"]').each(function(index, item)
+          {
+            $(item).attr('value', currentQuestion.answer[index] );
+            $(item).attr('checked', false );
+            $(item).next().text( currentQuestion.answer[index] );
           })
+
+          console.log( currentQuestion.quizItemCount == currentQuestion.totalPossible );
+
+          if( !anyQuestionsLeft )
+          {
+            $('#submit').val('submit & calculate total');
+          }
         }
-
-        correctAnswers += currentQuestion.correct;
-        totalQuestions = currentQuestion.totalPossible;
-        anyQuestionsLeft = currentQuestion.itemsLeft;
-
-        console.log( 'count: ' + count );
-        console.log( 'correctAnswers: ' + correctAnswers );
-        console.log( 'getTotal: ' + getTotal );
-        console.log( 'totalQuestions: ' + totalQuestions );
-        console.log( 'anyQuestionsLeft: ' + anyQuestionsLeft  );
-        console.log( 'questionsLeftInt: ' + questionsLeftInt  );
-
-        $('#content h2').text( 'Q: ' + currentQuestion.question );
-        $('#content input[type="radio"]').each(function(index, item)
-        {
-          $(item).attr('value', currentQuestion.answer[index] );
-          $(item).attr('checked', false );
-          $(item).next().text( currentQuestion.answer[index] );
-        })
-
-        console.log( currentQuestion.quizItemCount == currentQuestion.totalPossible );
-
-        if( !anyQuestionsLeft )
-        {
-          $('#submit').val('submit & calculate total');
-        }
-      }).fail(function()
+      })
+      .fail(function()
       {
           alert('Sorry the quiz could not be loaded. Please refresh your browser.');
-      }).always();
+      })
+      .always();
     }
 
     // returned object once instance of renderQuestion is made
