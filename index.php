@@ -3,11 +3,7 @@
 <!--[if IE 7]> <html class="lt-ie11 lt-ie10 lt-ie9 lt-ie8 ie7"> <![endif]-->
 <!--[if IE 8]> <html class="lt-ie11 lt-ie10 lt-ie9 ie8"> <![endif]-->
 <!--[if IE 9]> <html class="lt-ie11 lt-ie10 ie9"> <![endif]-->
-<!--[if IE 10]> <html class="lt-ie11 ie10"> <![endif]-->
-<!--[if IE]> <html class="ie11"> <![endif]-->
-<!--[if gte IE 11]> ><! <![endif]-->
 <html class="no-js" lang="en">
-<!-- <![endif] -->
   <head>
     <meta charset="utf-8" />
     <title>JavaScript Quiz</title>
