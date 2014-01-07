@@ -9,7 +9,7 @@ class Questions {
                     ),
                     1 => array(
                       "question"    =>   "What is the year?",
-                      "answer"      =>   array( '1900', '2014', '2014' ),
+                      "answer"      =>   array( '1900', '2019', '2014' ),
                       "correct"     =>   '2014'
                     ),
                     3 => array(

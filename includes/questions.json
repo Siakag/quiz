@@ -1,0 +1,48 @@
+{
+  "quizItems" : [
+    {
+      "0" : {
+              "question" : "What is the big idea?",
+              "answer" :  [
+                            {"0" : "a"},
+                            {"1" : "wiseguy"},
+                            {"2" : "ehh"}
+                          ],
+              "correct" : "you"
+            },
+    },
+    {
+      "1" : {
+              "question" : "What is the year?",
+              "answer" :  [
+                            {"0" : "1900"},
+                            {"1" : "2014"},
+                            {"2" : "2014"}
+                          ],
+              "correct" : "2014"
+            },
+    },
+    {
+      "2" : {
+              "question" : "What is your fav color?",
+              "answer" :  [
+                            {"0" : "pink"},
+                            {"1" : "red"},
+                            {"green" }
+                          ],
+              "correct" : "pink"
+            },
+    },
+    {
+      "3" : {
+              "question" : "What is the time?",
+              "answer" :  [
+                            {"0" : "7am"},
+                            {"1" : "party time"},
+                            {"2" : "12:00hrs"}
+                          ],
+              "correct" : "party time"
+            }
+    }
+  ]
+}
