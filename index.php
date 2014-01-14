@@ -3,7 +3,7 @@
 <!--[if IE 7]> <html class="lt-ie11 lt-ie10 lt-ie9 lt-ie8 ie7"> <![endif]-->
 <!--[if IE 8]> <html class="lt-ie11 lt-ie10 lt-ie9 ie8"> <![endif]-->
 <!--[if IE 9]> <html class="lt-ie11 lt-ie10 ie9"> <![endif]-->
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" ng-app>
   <head>
     <meta charset="utf-8" />
     <title>JavaScript Quiz</title>
@@ -14,38 +14,25 @@
     <link rel="icon" href="css/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css" >
   </head>
-  <body>
-    <h1>JS</h1>
+  <body ng-controller="questionsController" ng-init="init()">
+    <h1>JS Quiz</h1>
 
-  <!-- question data pulled in with Handlebars & ajax -->
-    <div id="content"> </div>
+  <!--  -->
+    <form id="qForm" data-ng-model="currQuestion" data-ng-submit="processGetNextQ()">
+      <h1> {{ currQuestion.question }} </h1>
+      <div ng-repeat="answer in currQuestion.answers">
+        <input type="radio" name="qAnswers" value="{{ answer.ans }}" data-ng-model="selectedAnswer" >
+        <span> {{ answer.ans }}</span>
+      </div>
+      <input type="submit" value="{{ submitValue }}" id='submit' >
+    </form>
+
+    <p id='results'> {{ totalString }} </p>
 
   <!-- scripts (added to bottom to prevent page blocking elements) -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="js/handlebars-v1.2.0.js"></script>
-    <script src="js/app.js"></script>
-
-  <!-- template -->
-    <script id="content-template" type="text/x-handlebars-template">
-      {{#if quizObject}}
-        {{#each quizObject}}
-
-          {{#if this.question}}
-            <h2>Q: {{question}}</h2>
-          {{/if}}
-
-          {{#if this.answer}}
-            <form id='answers' action='includes/questionHandler.php' method='post'>
-              <input id='hInput' class='hide' type='text' value='' />
-              {{#each answer}}
-                <input type='radio' name='answerChoices' class='answerChoices' value={{this}}> <span>{{this}}</span><br>
-              {{/each}}
-              <input id='submit' type='submit' value={{submitValue}} disabled='disabled'>            </form>
-          {{/if}}
-
-        {{/each}}
-      {{/if}}
-    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="model-views/questions.js"></script>
 
   </body>
 </html>

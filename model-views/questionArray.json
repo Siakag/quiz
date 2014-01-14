@@ -1,0 +1,39 @@
+
+questionsArray = [
+                    {
+                      "question" : "What is the big idea?",
+                      "answers" : [
+                                    { "ans" : "a", "selected" : "false" },
+                                    { "ans" : "wiseguy", "selected" : "false" },
+                                    { "ans" : "ehh", "selected" : "false" }
+                                  ],
+                      "correct" : "wiseguy"
+                    },
+                    {
+                      "question" : "What is the year?",
+                      "answers" : [
+                                    {"ans" : "1900"},
+                                    {"ans" : "2014"},
+                                    {"ans" : "2019"}
+                                  ],
+                      "correct" : "2014"
+                    },
+                    {
+                      "question" : "What is your fav color?",
+                      "answers" : [
+                                    {"ans" : "pink"},
+                                    {"ans" : "red"},
+                                    {"ans" : "green" }
+                                  ],
+                      "correct" : "pink"
+                    },
+                    {
+                      "question" : "What is the time?",
+                      "answers" : [
+                                    {"ans" : "7am"},
+                                    {"ans" : "party time"},
+                                    {"ans" : "12:00hrs"}
+                                  ],
+                      "correct" : "party time"
+                    }
+                  ];
