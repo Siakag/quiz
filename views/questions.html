@@ -1,0 +1,11 @@
+<!--  -->
+<form id="qForm" data-ng-model="currQuestion" data-ng-submit="processGetNextQ()">
+  <h1> {{ currQuestion.question }} </h1>
+  <div ng-repeat="answer in currQuestion.answers">
+    <input type="radio" name="qAnswers" value="{{ answer.ans }}" data-ng-model="selectedAnswer" >
+    <span> {{ answer.ans }}</span>
+  </div>
+  <input type="submit" value="{{ submitValue }}" id='submit' >
+</form>
+
+<p id='results'> {{ totalString }} </p>
