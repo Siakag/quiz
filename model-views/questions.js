@@ -57,10 +57,8 @@ function questionsController($scope, $http)
     else
     {
       var v = document.getElementsByName('qAnswers'), i;
-      for (i = 0, length = v.length; i < length; i++)
-      {
-        if (v[i].checked)
-        {
+      for (i = 0, length = v.length; i < length; i++) {
+        if (v[i].checked) {
           selectedAnswer = v[i].value;
           break;
         }
